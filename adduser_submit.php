@@ -65,7 +65,7 @@ else
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         /*** prepare the insert ***/
-        $stmt = $dbh->prepare("INSERT INTO cop4710 (phpro_username, phpro_password ) VALUES (:phpro_username, :phpro_password )");
+        $stmt = $dbh->prepare("INSERT INTO phpro_users (phpro_username, phpro_password ) VALUES (:phpro_username, :phpro_password )");
 
         /*** bind the parameters ***/
         $stmt->bindParam(':phpro_username', $phpro_username, PDO::PARAM_STR);
@@ -90,7 +90,7 @@ else
         else
         {
             /*** if we are here, something has gone wrong with the database ***/
-            $message = 'We are unable to process your request. Please try again later"';
+            $message = $e;
         }
     }
 }
