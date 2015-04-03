@@ -106,9 +106,10 @@ else
 
 <html>
 <head>
-<title>PHPRO Login</title>
+<title>Login</title>
+<meta http-equiv="refresh" content="3;url=index.php" />
 </head>
 <body>
-	<p><?php echo $message; ?>
+	<p><?php echo $message; ?> Redirecting to home...
 </body>
 </html>

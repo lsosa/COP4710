@@ -54,21 +54,22 @@
 				</form>
 			</p></center>
 			
+			<center><p class="body">
+		
+				<h3>Click <a href="adduser.php">Here</a> to register</h3>
+			
+			</p>
+			
 		<?php else: ?>
 		
 			<center><p class="body">
 		
 				<h4><a href="logout.php">Logout</a>, <a href="members.php">Members Area</a></h4>
-			</p>			
+			</p>		
 		
 		<?php endif; ?>
 		
 		<br>
-		
-		<center><p class="body">
-		
-			<h3>Click <a href="adduser.php">Here</a> to register</h3>
-		</p>
 		
 	</div>
 </body>
