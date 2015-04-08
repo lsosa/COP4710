@@ -92,11 +92,13 @@ else
         if( $e->getCode() == 23000)
         {
             $message = 'Username already exists';
+			header('Location: /');
         }
         else
         {
             /*** if we are here, something has gone wrong with the database ***/
             $message = $e;
+			header('Location: /');
         }
     }
 }

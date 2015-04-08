@@ -86,6 +86,7 @@ else
         if($user_id == false)
         {
                 $message = 'Login Failed';
+				header('Location: /');
         }
         /*** if we do have a result, all is well ***/
         else
