@@ -33,11 +33,11 @@ else
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         /*** prepare the insert ***/
-        $stmt = $dbh->prepare("SELECT phpro_username FROM phpro_users 
-        WHERE phpro_user_id = :phpro_user_id");
+        $stmt = $dbh->prepare("SELECT username FROM users 
+        WHERE user_id = :user_id");
 
         /*** bind the parameters ***/
-        $stmt->bindParam(':phpro_user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
 
         /*** execute the prepared statement ***/
         $stmt->execute();
@@ -52,7 +52,17 @@ else
         }
         else
         {
-            $message = 'Welcome '.$phpro_username;
+			if(isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 1)
+			{
+				$admin = ' You are super Admin!! '.$_SESSION["user_priv"];
+			}
+			else 
+			{
+				$admin = '';
+			}
+			
+			$message = 'Welcome '.$phpro_username.$admin;
+
         }
     }
     catch (Exception $e)
