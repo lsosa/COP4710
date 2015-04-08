@@ -1,3 +1,10 @@
+<?php
+
+/*** begin our session ***/
+session_start();
+
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -33,7 +40,7 @@
 		<br><br><center><div class="logo"><a href="index.php" style="text-decoration: none; color: #333333;">College Event Website</a></div></center>		
 
 		<br>
-		<?php session_start(); if( !isset( $_SESSION['user_id'] ) ): ?>
+		<?php if( !isset( $_SESSION['user_id'] ) ): ?>
 		
 			<center><p class="body">
 				<h3>Login Below</h3>

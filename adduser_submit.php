@@ -83,6 +83,8 @@ else
 
         /*** if all is done, say thanks ***/
         $message = 'New user added';
+		
+		header('Location: /');
     }
     catch(Exception $e)
     {
@@ -99,13 +101,3 @@ else
     }
 }
 ?>
-
-<html>
-<head>
-<title>Login</title>
-<meta http-equiv="refresh" content="3;url=index.php" />
-</head>
-<body>
-	<p><?php echo $message; ?> Redirecting to home...
-</body>
-</html>

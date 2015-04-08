@@ -94,8 +94,8 @@ else
                 $_SESSION["user_id"] = $user_id;
 				$_SESSION["user_priv"] = $user_priv;
 				
-                /*** tell the user we are logged in ***/				
-                $message = 'You are now logged in ';
+                /*** we are logged in, so go to home ***/                
+				header('Location: /');
         }
 
 
@@ -107,13 +107,3 @@ else
     }
 }
 ?>
-
-<html>
-<head>
-<title>Login</title>
-<meta http-equiv="refresh" content="3;url=index.php" />
-</head>
-<body>
-	<p><?php echo $message; ?> Redirecting to home...
-</body>
-</html>
