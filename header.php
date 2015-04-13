@@ -1,10 +1,3 @@
-<?php
-
-/*** begin our session ***/
-session_start();
-
-?>
-
 <!doctype html>
 <html>
 <head>
