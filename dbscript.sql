@@ -19,16 +19,16 @@ CREATE TABLE users (
 	firstname	VARCHAR(30) NOT NULL,
 	lastname	VARCHAR(30) NOT NULL,
 	email		VARCHAR(50),
-	reg_date	TIMESTAMP
+	reg_date	TIMESTAMP,
 	PRIMARY KEY (user_id),
 	UNIQUE KEY 	username (username)
 ); 
 
 	
 #create the Universities table
-CREATE TABLE Universities (
+CREATE TABLE universities (
 	univ_id			INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	univ_name		VARCHAR (30),
+	name			VARCHAR (30),
 	location		VARCHAR (30), 
 	description		VARCHAR (50),
 	num_students	INT(10),
@@ -36,33 +36,33 @@ CREATE TABLE Universities (
 );
 
 #create the Events table
-CREATE TABLE Events (
+CREATE TABLE events (
 	event_id		INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	name			VARCHAR (30),
 	category		VARCHAR (30),
 	description		VARCHAR (50),
-	time			TIMESTAMP,
-	date			DATE,
+	event_time		VARCHAR (50),
+	event_date		VARCHAR (50), 
 	location		VARCHAR (30),
 	contact_phone	INT(10),
-	contact_email	VARCHAR (50),
+	contact_email	VARCHAR (50)
 );
 
 #create the Comments table	
-CREATE TABLE Comments (
+CREATE TABLE comments (
 	comment_id		INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	event id		INT(6) FOREIGN KEY
+	event_id		INT(6)
 );
 
 #create the Ratings table	
-CREATE TABLE Ratings (
-	rating_id		INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,	
-	event_id		INT(6) FOREIGN KEY
+CREATE TABLE ratings (
+	rating_id		INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	event_id		INT(6)	
 );
 	
 
 
-INSERT INTO users VALUES (0, "admin", "root", 1, "admin", "user", "example@ucf.edu", NOW());
-INSERT INTO users VALUES (1, "user", "password", 3, "user", "name", "example@knights.ucf.edu", NOW());
-INSERT INTO Universities VALUES(0, "UCF", "Orlando", "University of Central Florida", 56000, null);
-INSERT INTO Events VALUES (0, "COP4710", "class", "Database Management Systems", 2015-04-16 14:00:00, 2015-04-16, "Orlando", "4071234567", "andres.vargas@knights.ucf.edu") 
+INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date) VALUES ("admin", "dc76e9f0c0006e8f919e0c515c66dbba3982f785", 1, "admin", "user", "example@ucf.edu", NOW());
+INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date) VALUES ("user", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", 3, "user", "name", "example@knights.ucf.edu", NOW());
+INSERT INTO universities (name, location, description, num_students, pictures) VALUES("UCF", "Orlando", "University of Central Florida", 56000, null);
+INSERT INTO events (name, category, description, event_time, event_date, location, contact_phone, contact_email) VALUES ("COP4710", "class", "Database Management Systems", "14:00:00", "2015-04-16", "Orlando", "4071234567", "andres.vargas@knights.ucf.edu") 
