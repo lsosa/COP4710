@@ -40,7 +40,7 @@ session_start();
 		<br><br><center><div class="logo"><a href="index.php" style="text-decoration: none; color: #333333;">College Event Website</a></div></center>		
 
 		<br>
-		<?php if( !isset( $_SESSION['user_id'] ) ): ?>
+		<?php if(!isset($_SESSION['user_id'])): ?>
 		
 			<center><p class="body">
 				<h3>Login Below</h3>
@@ -70,8 +70,25 @@ session_start();
 		<?php else: ?>
 		
 			<center><p class="body">
-		
-				<h4><a href="logout.php">Logout</a>, <a href="members.php">Members Area</a></h4>
+				
+				<?php if(isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 3): ?>
+				
+					<h4><a href="logout.php">Logout</a>, <a href="/">Request New RSO</a></h4>
+				
+				<?php elseif (isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 2): ?>
+				
+					<h4><a href="logout.php">Logout</a>, <a href="/">Host Event</a></h4>
+				
+				<?php elseif (isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 1): ?>
+				
+					<h4><a href="logout.php">Logout</a>, <a href="/">Create University Profile</a>, <a href="/">Aprove Events</a></h4>
+					
+				<?php else: ?>
+					
+					<h4><a href="logout.php">Logout</a>, Error: User privilege not set! </h4>
+					
+				<?php endif; ?>
+				
 			</p>		
 		
 		<?php endif; ?>
