@@ -62,3 +62,7 @@ CREATE TABLE Ratings (
 	
 
 
+INSERT INTO users VALUES (0, "admin", "root", 1, "admin", "user", "example@ucf.edu", NOW());
+INSERT INTO users VALUES (1, "user", "password", 2, "user", "name", "example@knights.ucf.edu", NOW());
+INSERT INTO Universities VALUES(0, "UCF", "Orlando", "University of Central Florida", 56000, null);
+INSERT INTO Events VALUES (0, "COP4710", "class", "Database Management Systems", 2015-04-16 14:00:00, 2015-04-16, "Orlando", "4071234567", "andres.vargas@knights.ucf.edu") 
