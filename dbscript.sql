@@ -64,13 +64,20 @@ CREATE TABLE ratings (
 	rating_id		INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	event_id		INT(6)	
 );
+
+#create the RSO table
+CREATE TABLE rso(
+	rso_id			INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	email			VARCHAR(20),
+	admin			INT(11)
+);
 	
 
 
 INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date) VALUES ("admin", "dc76e9f0c0006e8f919e0c515c66dbba3982f785", 1, "admin", "user", "example@ucf.edu", NOW());
 INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date) VALUES ("user", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", 3, "user", "name", "example@knights.ucf.edu", NOW());
 INSERT INTO universities (name, location, description, num_students, pictures) VALUES("UCF", "Orlando", "University of Central Florida", 56000, null);
-INSERT INTO events (name, category, description, event_time, event_date, location, contact_phone, contact_email) VALUES ("COP4710", "class", "Database Management Systems", "14:00:00", "2015-04-16", "Orlando", "4071234567", "andres.vargas@knights.ucf.edu") 
+INSERT INTO events (name, category, description, event_time, event_date, location, univ_id, rso, contact_phone, contact_email) VALUES ("COP4710", "class", "Database Management Systems", "14:00:00", "2015-04-16", "Orlando", 0, 0, "4071234567", "andres.vargas@knights.ucf.edu") 
 
 # events at users university
 #SELECT e.* FROM events e, universities u, users s WHERE s.univ_id = u.univ_id AND u.location = e.location
