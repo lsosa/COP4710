@@ -66,3 +66,14 @@ INSERT INTO users (username, password, priv, firstname, lastname, email, reg_dat
 INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date) VALUES ("user", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", 3, "user", "name", "example@knights.ucf.edu", NOW());
 INSERT INTO universities (name, location, description, num_students, pictures) VALUES("UCF", "Orlando", "University of Central Florida", 56000, null);
 INSERT INTO events (name, category, description, event_time, event_date, location, contact_phone, contact_email) VALUES ("COP4710", "class", "Database Management Systems", "14:00:00", "2015-04-16", "Orlando", "4071234567", "andres.vargas@knights.ucf.edu") 
+
+# events at users university
+#SELECT e.* FROM events e, universities u, users s WHERE s.univ_id = u.univ_id AND u.location = e.location
+#SELECT e.* FROM events e, universities u WHERE e.location = u.location AND u.location = (?)
+#events in a users RSO
+#SELECT e.* FROM events e, users s WHERE s.RSO = e.RSO
+#public event below
+#SELECT e.* FROM events e, universities u, users s WHERE e.privacy = 0
+#private event below
+#SELECT e.* FROM events e, universities u, users s WHERE s.univ_id = u.univ_id AND u.location = e.location AND e.privacy = 1
+
