@@ -20,6 +20,7 @@ CREATE TABLE users (
 	lastname	VARCHAR(30) NOT NULL,
 	email		VARCHAR(50),
 	reg_date	TIMESTAMP,
+	rso		INT(5),
 	PRIMARY KEY (user_id),
 	UNIQUE KEY 	username (username)
 ); 
@@ -44,6 +45,9 @@ CREATE TABLE events (
 	event_time		VARCHAR (50),
 	event_date		VARCHAR (50), 
 	location		VARCHAR (30),
+	univ_id			INT(6),
+	priv			INT(1),
+	rso			INT(5),
 	contact_phone	INT(10),
 	contact_email	VARCHAR (50)
 );
@@ -51,7 +55,8 @@ CREATE TABLE events (
 #create the Comments table	
 CREATE TABLE comments (
 	comment_id		INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	event_id		INT(6)
+	event_id		INT(6),
+	text			VARCHAR(140)
 );
 
 #create the Ratings table	
