@@ -52,7 +52,7 @@ session_start();
 				
 				<?php elseif (isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 1): ?>
 				
-					<h4><a href="logout.php">Logout</a>, <a href="create_university_profile.php">Create University Profile</a>, <a href="/">Aprove Events</a></h4>
+					<h4><a href="logout.php">Logout</a>, <a href="create_university_profile.php">Create University Profile</a>, <a href="/">Approve Events</a></h4>
 					
 				<?php else: ?>
 					
