@@ -30,6 +30,18 @@ $_SESSION['form_token'] = $form_token;
 						<input type="password" id="password" name="password" value="" maxlength="20" />
 					</p>
 					<p>
+						<label for="firstname">First Name</label>
+						<input type="text" id="firstname" name="firstname" value="" maxlength="20" />
+					</p>
+					<p>
+						<label for="lastname">Last Name</label>
+						<input type="text" id="lastname" name="lastname" value="" maxlength="20" />
+					</p>
+					<p>
+						<label for="email">Email</label>
+						<input type="text" id="email" name="email" value="" maxlength="100" />
+					</p>
+					<p>
 						<input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
 						<input type="submit" value="Register" />
 					</p>
@@ -41,7 +53,7 @@ $_SESSION['form_token'] = $form_token;
 		
 		<center><p class="body">
 		
-			<h4>***You will be automatically logged in once you register if registration was successful.***</h4>
+			
 		</p>
 		
 	</div>

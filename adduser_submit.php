@@ -12,6 +12,16 @@ elseif( $_POST['form_token'] != $_SESSION['form_token'])
 {
     $message = 'Invalid form submission';
 }
+/*** check that the firstname was filled ***/
+elseif(!isset($_POST['firstname']))
+{
+	$message = 'Please enter a valid name';
+}
+/*** check that the email was filled ***/
+elseif(!isset($_POST['email']))
+{
+	$message = 'Please enter a valid name';
+}
 /*** check the username is the correct length ***/
 elseif (strlen( $_POST['username']) > 20 || strlen($_POST['username']) < 4)
 {
@@ -39,6 +49,9 @@ else
     /*** if we are here the data is valid and we can insert it into database ***/
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+	$firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
+	$lastname = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
+	$email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
 	
 	/*** default user privilege ***/
 	$user_priv = 3;
@@ -61,6 +74,8 @@ else
 
     try
     {
+		$reg_date = date("Y-m-d H:i:s");
+		
         $dbh = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
         /*** $message = a message saying we have connected ***/
 
@@ -68,12 +83,17 @@ else
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         /*** prepare the insert ***/
-        $stmt = $dbh->prepare("INSERT INTO users (username, password, priv) VALUES (:username, :password, :priv )");
+        $stmt = $dbh->prepare("INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date) VALUES (:username, :password, :priv , :firstname, :lastname, :email, :reg_date)");
 
         /*** bind the parameters ***/
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->bindParam(':password', $password, PDO::PARAM_STR, 40);
 		$stmt->bindParam(':priv', $user_priv, PDO::PARAM_INT);
+		$stmt->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+		$stmt->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+		$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+		$stmt->bindParam(':reg_date', $reg_date, PDO::PARAM_STR);
+		
 
         /*** execute the prepared statement ***/
         $stmt->execute();
