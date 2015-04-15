@@ -74,7 +74,7 @@ CREATE TABLE rso(
 	
 
 
-INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date) VALUES ("super_admin", "dc76e9f0c0006e8f919e0c515c66dbba3982f785", 1, "super", "admin", "example@ucf.edu", NOW());
+INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date) VALUES ("superAdmin", "dc76e9f0c0006e8f919e0c515c66dbba3982f785", 1, "super", "admin", "example@ucf.edu", NOW());
 INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date) VALUES ("user", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", 3, "user", "name", "example@knights.ucf.edu", NOW());
 INSERT INTO universities (name, location, description, num_students, pictures) VALUES("UCF", "Orlando", "University of Central Florida", 56000, null);
 INSERT INTO events (name, category, description, event_time, event_date, location, univ_id, rso, contact_phone, contact_email) VALUES ("COP4710", "class", "Database Management Systems", "14:00:00", "2015-04-16", "Orlando", 0, 0, "4071234567", "andres.vargas@knights.ucf.edu") 
