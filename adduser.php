@@ -21,30 +21,27 @@ $_SESSION['form_token'] = $form_token;
 			<h3>Registration Form</h3>
 			<form action="adduser_submit.php" method="post">
 				<fieldset>
-					<p>
-						<label for="username">Username</label>
-						<input type="text" id="username" name="username" value="" maxlength="20" />
-					</p>
-					<p>
-						<label for="password">Password</label>
-						<input type="password" id="password" name="password" value="" maxlength="20" />
-					</p>
-					<p>
-						<label for="firstname">First Name</label>
-						<input type="text" id="firstname" name="firstname" value="" maxlength="20" />
-					</p>
-					<p>
-						<label for="lastname">Last Name</label>
-						<input type="text" id="lastname" name="lastname" value="" maxlength="20" />
-					</p>
-					<p>
-						<label for="email">Email</label>
-						<input type="text" id="email" name="email" value="" maxlength="100" />
-					</p>
-					<p>
-						<input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
-						<input type="submit" value="Register" />
-					</p>
+					<table>
+						<tr><td> <label for="firstname">First Name:</label> </td>
+						<td> <input type="text" id="firstname" name="firstname" value="" maxlength="20" /> </td></tr>
+					
+					
+						<tr><td> <label for="lastname">Last Name:</label> </td>
+						<td> <input type="text" id="lastname" name="lastname" value="" maxlength="20" /> </td></tr>
+					
+						<tr><td> <label for="email">Email:</label> </td>
+						<td> <input type="text" id="email" name="email" value="" maxlength="20" /> </td></tr>
+					
+						<tr><td> <label for="username">Username:</label> </td>
+						<td> <input type="text" id="username" name="username" value="" maxlength="20" /> </td></tr>
+					
+						<tr><td> <label for="password">Password:</label> </td>
+						<td> <input type="password" id="password" name="password" value="" maxlength="20" /> </td></tr>
+					
+						<tr><td> <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
+								 <input type="submit" value="Register" /> 
+						</td></tr>
+					</table>
 				</fieldset>
 			</form>
 		</p></center>

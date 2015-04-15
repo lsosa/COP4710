@@ -16,39 +16,35 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_priv'] != 1)
 		<br><br><center><div class="logo"><a href="index.php" style="text-decoration: none; color: #333333;">Create University Profile</a></div></center>
 
 		<center><p class="body">
+		
+			<style>
+			  ul#university_signup
+				{
+					list-style-type: none;
+				}
+			</style>
+			
 			<form>
-				<ul>
-					<h3> Education </h3>
-						<li>
-							University name:
-							<br>
-							<input type="text" name="" value="">
-						</li>
-				<br>
-						<li>
-							Location:
-							<br>
-							<input type="text" name="" value="">
-						</li>
-				<br>
-						<li>
-							Description:
-							<br>
-							<input type="text" name="" value="">
-						</li>
-				<br>
-						<li>
-							Number of Students:
-							<br>
-							<input type="number" name="" value="">
-						</li>
-				<br>
-						<li>
-							Pictures:
-							<br>
-							<input type="file" name="pic" id="pic"><br><br>
-							<input type="submit" value="Submit">
-						</li>
+				<h3> Education </h3>
+				
+				<table>
+					<tr><td> University name: </td>
+					<td> <input type="text" name="" value=""> </td></tr>
+					
+					<tr><td> Location:</td>
+					<td> <input type="text" name="" value=""> </td></tr>
+					
+					<tr><td> Description: </td>
+					<td> <input type="text" name="" value=""> </td></tr>
+
+					<tr><td> Number of Students: </td>
+					<td> <input type="number" name="" value=""> </td></tr>
+					
+					<tr><td> Pictures: </td>
+					<td> <input type="file" name="pic" id="pic"><br><br> </td></tr>
+					
+					<tr><td><input type="submit" value="Submit"> </td></tr>
+				</table>
 			</form>
 		</p>
 	</div>
