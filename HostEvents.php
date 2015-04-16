@@ -1,50 +1,39 @@
+<?php include('header.php'); ?>
+
 <div id="page">
 
 
 		<center><p class="body">
 			
-			<form>
+			<form action="hostevent_submit.php" method="post">
 				<h3> Create Event </h3>
 				
 				<table>
 					<tr><td> Event Name </td>
-					<td> <input type="text" name="" value=""> </td></tr>
+					<td> <input type="text" name="name" value=""> </td></tr>
 					
 					<tr><td> Description:</td>
-					<td> <input type="text" name="" value=""> </td></tr>
+					<td> <input type="text" name="description" value=""> </td></tr>
 					
 					<tr><td> Event Time: </td>
-					<td> <input type="text" name="" value=""> </td></tr>
+					<td> <input type="text" name="time" value=""> </td></tr>
 
 					<tr><td> Event Date: </td>
-					<td> <input type="text" name="" value=""> </td></tr>
+					<td> <input type="text" name="date" value=""> </td></tr>					
 					
-					<tr><td> 
-						<select>
-							  <option value="UCF">UCF Student Union</option>
-							  <option value="UF">UCF Arena</option>
-							  <option value="FSU">HEC Building</option>
-							  <option value="none">FSU</option>
-							  <option value="none">UF</option>
-						</select> 
-					</td>
-					
-					<td> <a href="locations.html">Common Locations</a> </td></tr>
-					
-					<td> Other Location: </td>
-					<td> <input type="text" name="" value=""> </td></tr>
+					<td> Location: </td>
+					<td> <input type="text" name="location" value=""> </td></tr>
 					
 					<tr><td> Contact Phone: </td>
-					<td> <input type="text" name="" value=""> </td></tr>
+					<td> <input type="text" name="phone" value=""> </td></tr>
 					
 					<tr><td> Contact Email: </td>
-					<td> <input type="text" name="" value=""> </td></tr>
-			</form>
+					<td> <input type="text" name="email" value=""> </td></tr>
 					
-			<form method="get" action="request_submitted.php">		
 					<tr><td><input type="submit" value="Submit"> </td></tr>
 				</table>
 			</form>
 		</p>
 	</div>
-</body>
+
+<?php include('footer.php'); ?>

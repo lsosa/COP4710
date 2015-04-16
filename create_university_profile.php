@@ -42,12 +42,10 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_priv'] != 1)
 					
 					<tr><td> Pictures: </td>
 					<td> <input type="file" name="pic" id="pic"><br><br> </td></tr>
-					</form>
-					<form method="get" action="request_submitted.php">		
+					
 					<tr><td><input type="submit" value="Submit"> </td></tr>
-					</form>
 				</table>
-			
+			</form>
 		</p>
 	</div>
 </body>
