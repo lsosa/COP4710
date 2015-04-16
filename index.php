@@ -18,11 +18,11 @@ session_start();
 				<form action="login_submit.php" method="post">
 					<fieldset>
 						<p>
-							<label for="username">Username</label>
+							<label for="username">Username:</label>
 							<input type="text" id="username" name="username" value="" maxlength="20" />
 						</p>
 						<p>
-							<label for="password">Password</label>
+							<label for="password">Password:</label>
 							<input type="password" id="password" name="password" value="" maxlength="20" />
 						</p>
 						<p>
@@ -41,19 +41,35 @@ session_start();
 		<?php else: ?>
 		
 			<center><p class="body">
+			
+			<style>
+				#navbar 
+					{
+					width: 550px;
+					height: 35px;
+					font-size: 16px;
+					font-family: Tahoma, Geneva, sans-serif;
+					font-weight: bold;
+					text-align: center;
+					text-shadow: 1px 2px 3px #333333;
+					background-color: #8AD9FF;
+					border-radius: 8px;
+					text-decoration: none;
+					}
+			</style>
 				
 				<?php if(isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 3): ?>
-				
-					<h4><a href="logout.php">Logout</a>, <a href="/">Request New RSO</a></h4>
-				
+					<div id="navbar">
+						<h4><a href="logout.php">Logout</a> &nbsp&nbsp&nbsp <a href="/">Request New RSO</a></h4>
+					</div>
 				<?php elseif (isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 2): ?>
-				
-					<h4><a href="logout.php">Logout</a>, <a href="/">Host Event</a></h4>
-				
+					<div id="navbar">
+					<h4><a href="logout.php">Logout</a> &nbsp&nbsp&nbsp <a href="/">Host Event</a></h4>
+					</div>
 				<?php elseif (isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 1): ?>
-				
-					<h4><a href="logout.php">Logout</a>, <a href="create_university_profile.php">Create University Profile</a>, <a href="/">Approve Events</a></h4>
-					
+					<div id="navbar">
+					<h4><a href="logout.php">Logout</a> &nbsp&nbsp&nbsp <a href="create_university_profile.php">Create University Profile</a> &nbsp&nbsp&nbsp <a href="/">Approve Events</a></h4>
+					</div>
 				<?php else: ?>
 					
 					<h4><a href="logout.php">Logout</a>, Error: User privilege not set! </h4>
