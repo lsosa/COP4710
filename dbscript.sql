@@ -120,7 +120,7 @@ INSERT INTO ratings (event_id, rating, comment_id) VALUES (2, 2,3);
 
 #public event below
 #returns all the public events regardless of location
-#SELECT * FROM events WHERE e.priv = 0
+#SELECT * FROM events WHERE priv = 0
 
 #Returns the private events at a users university
 #need to input the user id
