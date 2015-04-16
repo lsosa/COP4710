@@ -3,6 +3,7 @@
 /*** begin our session ***/
 session_start();
 
+$location = "UCF";
 
 function listEventInfo() {
 	
@@ -28,7 +29,7 @@ function listEventInfo() {
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         /*** prepare the select statement ***/
-        $stmt = $dbh->prepare("SELECT name, description, event_date, contact_phone, contact_email, event_id FROM events WHERE event_id = :event_id");        
+        $stmt = $dbh->prepare("SELECT name, description, event_date, contact_phone, contact_email, event_id, location FROM events WHERE event_id = :event_id");        
 
         $stmt->bindParam(':event_id', $_GET['event_id'], PDO::PARAM_INT);
 		
@@ -36,6 +37,8 @@ function listEventInfo() {
         $stmt->execute();
 		
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		$location = $result['location'];
 		
 		echo "<h3>Name: " . $result['name'] . "</h3>";
 		echo "<h3>Description: " . $result['description'] . "</h3>";
@@ -177,7 +180,7 @@ function listCommentsAndRatings() {
 			height="450"
 			frameborder="0" style="border:0"
 			src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA-bycgCKodNWMCGD9CUspU9ZC7aGxmHbk
-			&q=University of Central Florida
+			&q=<?php echo $location ?>
 			&attribution_source=Google+Maps+Embed+API
 			&attribution_web_url=http://www.butchartgardens.com/
 			&attribution_ios_deep_link_id=comgooglemaps://?daddr=Butchart+Gardens+Victoria+BC">
