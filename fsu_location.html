@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>
+		</title>
+		<script src="http://maps.googleapis.com/maps/api/js"></script>
+		<script>
+			function initialize() {
+			  var mapProp = {
+				center:new google.maps.LatLng(30.441873, -84.297904),
+				zoom:15,
+				mapTypeId:google.maps.MapTypeId.ROADMAP
+			  };
+			  var map=new google.maps.Map(document.getElementById('googleMap'),mapProp);
+			}
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>	
+	</head>
+	
+	<body>
+
+		<table>
+			<td><tr> <h1>FSU</h1> </td></tr>
+			<td><tr> <h1>Longitude: -84.297904</h1> </td></tr>
+			<td><tr> <h1>Latitude: 30.441873</h1> </td></tr>
+			<td><tr> <div id="googleMap" style="width:350px;height:350px;"></div> </td></tr><br>
+		</table>
+			
+
+		
+		
+	</body>
+</html>	
