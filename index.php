@@ -285,7 +285,7 @@ function listRSOEvents() {
 				
 				<?php if(isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 3): ?>
 					<div id="navbar">
-						<h4><a href="logout.php">Logout</a> &nbsp&nbsp&nbsp <a href="/">Request New RSO</a></h4>
+						<h4><a href="logout.php">Logout</a> &nbsp&nbsp&nbsp <a href="request_new_rso.php">Request New RSO</a></h4>
 					</div>
 				<?php elseif (isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 2): ?>
 					<div id="navbar">
