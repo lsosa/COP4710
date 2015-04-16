@@ -36,9 +36,9 @@ function listEventInfo() {
 		/*** execute the prepared statement ***/
         $stmt->execute();
 		
-		$result = $stmt->fetch(PDO::FETCH_ASSOC);
-		
-		$location = $result['location'];
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);		
+
+		$GLOBALS['location'] = $result['location'];
 		
 		echo "<h3>Name: " . $result['name'] . "</h3>";
 		echo "<h3>Description: " . $result['description'] . "</h3>";
@@ -174,6 +174,8 @@ function listCommentsAndRatings() {
 			listCommentsAndRatings();
 		
 		?>
+		
+		<br>
 		
 		<iframe
 			width="600"

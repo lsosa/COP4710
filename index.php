@@ -100,7 +100,7 @@ function listUniversityEvents() {
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         /*** prepare the select statement ***/
-        $stmt = $dbh->prepare("SELECT e.name, e.description, e.event_time, e.location, e.contact_email, e.event_id FROM events e, universities u, users s WHERE e.location = u.location AND e.priv = 1 AND s.user_id = :user_id AND s.univ_id = u.univ_id");        
+        $stmt = $dbh->prepare("SELECT e.name, e.description, e.event_time, e.location, e.contact_email, e.event_id FROM events e, universities u, users s WHERE e.univ_id = u.univ_id AND e.priv = 1 AND s.user_id = :user_id AND s.univ_id = u.univ_id");        
 
         $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
 		
