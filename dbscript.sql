@@ -45,7 +45,7 @@ CREATE TABLE events (
 	description		VARCHAR (50),
 	event_time		VARCHAR (50),
 	event_date		VARCHAR (50), 
-	location		VARCHAR (30),
+	location		VARCHAR (100),
 	univ_id			INT(6),
 	priv			INT(1),
 	rso				INT(5),
