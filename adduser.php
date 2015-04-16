@@ -28,6 +28,16 @@ $_SESSION['form_token'] = $form_token;
 					
 						<tr><td> <label for="lastname">Last Name:</label> </td>
 						<td> <input type="text" id="lastname" name="lastname" value="" maxlength="20" /> </td></tr>
+						
+						<tr><td> University name: </td>
+						<td> 
+						<select>
+							  <option value="UCF">UCF</option>
+							  <option value="UF">UF</option>
+							  <option value="FSU">FSU</option>
+							  <option value="none">Not Listed</option>
+						</select> 
+						</td></tr>
 					
 						<tr><td> <label for="email">Email:</label> </td>
 						<td> <input type="text" id="email" name="email" value="" maxlength="20" /> </td></tr>
