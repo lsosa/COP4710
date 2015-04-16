@@ -289,7 +289,7 @@ function listRSOEvents() {
 					</div>
 				<?php elseif (isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 2): ?>
 					<div id="navbar">
-					<h4><a href="logout.php">Logout</a> &nbsp&nbsp&nbsp <a href="/">Host Event</a></h4>
+					<h4><a href="logout.php">Logout</a> &nbsp&nbsp&nbsp <a href="HostEvents.php">Host Event</a></h4>
 					</div>
 				<?php elseif (isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 1): ?>
 					<div id="navbar">
