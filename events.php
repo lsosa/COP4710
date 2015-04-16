@@ -35,9 +35,15 @@ function listEventInfo() {
 		/*** execute the prepared statement ***/
         $stmt->execute();
 		
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		echo $row['name'] . "\t" . $row['description'] . "\t" . $row['event_date'] . "\t" . $row['contact_phone'] . "\t" . $row['contact_email'] . "<br><br>";				
+		echo "<h3>Name: " . $result['name'] . "</h3>";
+		echo "<h3>Description: " . $result['description'] . "</h3>";
+		echo "<h3>Date: " . $result['event_date'] . "</h3>";
+		echo "<h3>Contact Phone: " . $result['contact_phone'] . "</h3>";
+		echo "<h3>Contact Email: " . $result['contact_email'] . "</h3>";
+		
+		//echo $row['name'] . "\t" . $row['description'] . "\t" . $row['event_date'] . "\t" . $row['contact_phone'] . "\t" . $row['contact_email'] . "<br><br>";				
 		
 		$stmt = null;
 		
@@ -107,9 +113,11 @@ function listCommentsAndRatings() {
 		
 		//$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		
+		echo "<h3>Comments: </h3>";
+		
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC))
 		{
-			echo $result['text'] . "\t" . $result['rating'] . "<br>";
+			echo "<h3>" . $result['text'] . "\t\t\t" . "Rating: " .$result['rating'] . "</h3>";
 			//$data = $row['name'] . "\t" . $row['description'] . "\n";
 			//print $data;
 		}
@@ -159,9 +167,28 @@ function listCommentsAndRatings() {
 		<?php 
 		
 			listEventInfo();
+			echo "<br>";
 			listCommentsAndRatings();
 		
 		?>
+		
+		<iframe
+			width="600"
+			height="450"
+			frameborder="0" style="border:0"
+			src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA-bycgCKodNWMCGD9CUspU9ZC7aGxmHbk
+			&q=University of Central Florida
+			&attribution_source=Google+Maps+Embed+API
+			&attribution_web_url=http://www.butchartgardens.com/
+			&attribution_ios_deep_link_id=comgooglemaps://?daddr=Butchart+Gardens+Victoria+BC">
+		</iframe>
+		
+		<a class="twitter-share-button"	href="https://twitter.com/share">Tweet</a>
+		<script>
+			window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+		</script>
+		
+		<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count"></div>
 		
 	</div>
 </body>
