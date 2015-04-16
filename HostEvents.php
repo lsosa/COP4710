@@ -39,7 +39,9 @@
 					
 					<tr><td> Contact Email: </td>
 					<td> <input type="text" name="" value=""> </td></tr>
+			</form>
 					
+			<form method="get" action="request_submitted.php">		
 					<tr><td><input type="submit" value="Submit"> </td></tr>
 				</table>
 			</form>

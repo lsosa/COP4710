@@ -14,10 +14,13 @@
 							  <option value="UF">Decline</option>
 					</select> 
 					</td></tr>
-
-					<tr><td><input type="submit" value="Submit"> </td></tr>
-				</table>
 			</form>
+					<form method="get" action="request_submitted.php">		
+					<tr><td><input type="submit" value="Submit"> </td></tr>
+					</form>
+				</table>
+			
+			
 		</p>
 	</div>
 </body>
