@@ -28,16 +28,15 @@ function listPublicEvents() {
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         /*** prepare the select statement ***/
-        $stmt = $dbh->prepare("SELECT name, description, event_date, contact_phone, contact_email FROM events WHERE priv = 0");        
+        $stmt = $dbh->prepare("SELECT name, description, event_date, contact_phone, contact_email, event_id FROM events WHERE priv = 0");        
 
         /*** execute the prepared statement ***/
         $stmt->execute();
 		
-		$result = $stmt->fetch(PDO::FETCH_ASSOC);
-		
 		while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 		{
-			echo $row['name'] . "\t" . $row['description'] . "\t" . $row['event_date'] . "\t" . $row['contact_phone'] . "\t" . $row['contact_email'] . "<br><br>";
+			$event_id = $row['event_id'];
+			echo "<a href='events.php?event_id=$event_id'>" . $row['name'] . "</a>".  "\t" . $row['description'] . "\t" . $row['event_date'] . "\t" . $row['contact_phone'] . "\t" . $row['contact_email'] . "<br><br>";
 			//$data = $row['name'] . "\t" . $row['description'] . "\n";
 			//print $data;
 		}
@@ -77,7 +76,7 @@ function listPublicEvents() {
 	
 }
 
-function listFollowingEvents() {
+function listUniversityEvents() {
 	
 	/*** connect to database ***/
     /*** mysql hostname ***/
@@ -92,7 +91,81 @@ function listFollowingEvents() {
     /*** database name ***/
     $mysql_dbname = 'cop4710';
 	
-	$user_id = $_SESSION['user_id'];
+	try
+    {
+        $dbh = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
+        /*** $message = a message saying we have connected ***/
+
+        /*** set the error mode to excptions ***/
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        /*** prepare the select statement ***/
+        $stmt = $dbh->prepare("SELECT e.name, e.description, e.event_time, e.location, e.contact_email, e.event_id FROM events e, universities u, users s WHERE e.location = u.location AND e.priv = 1 AND s.user_id = :user_id AND s.univ_id = u.univ_id");        
+
+        $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+		
+		/*** execute the prepared statement ***/
+        $stmt->execute();
+		
+		//$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+		{
+			$event_id = $row['event_id'];
+			echo "<a href='events.php?event_id=$event_id'>". $row['name'] . "</a>". "\t" . $row['description'] . "\t" . $row['event_time'] . "\t" . $row['location'] . "\t" . $row['contact_email'] . "<br><br>";
+			//$data = $row['name'] . "\t" . $row['description'] . "\n";
+			//print $data;
+		}
+		
+		$stmt = null;
+		
+        /*** check for a result ***/
+        //$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		//$name = $result["name"];
+		//$user_id = $row["user_id"];
+		//$user_priv = $row["priv"];
+
+        /*** if we have no result then fail boat ***/
+        // if($name == false)
+        // {
+                // echo 'No public events found';
+				//header('Location: /');
+        // }
+        // /*** if we do have a result, all is well ***/
+        // else
+        // {            
+			// foreach($result as $output)
+			// {
+				// echo output[0];
+				// echo output[1];
+			// }				
+        // }
+
+
+    }
+    catch(Exception $e)
+    {
+        /*** if we are here, something has gone wrong with the database ***/
+        echo 'We are unable to process your request. Please try again later';
+    }	
+	
+}
+
+function listRSOEvents() {
+	
+	/*** connect to database ***/
+    /*** mysql hostname ***/
+    $mysql_hostname = 'localhost';
+
+    /*** mysql username ***/
+    $mysql_username = 'root';
+
+    /*** mysql password ***/
+    $mysql_password = 'root';
+
+    /*** database name ***/
+    $mysql_dbname = 'cop4710';
 	
 	try
     {
@@ -103,16 +176,19 @@ function listFollowingEvents() {
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         /*** prepare the select statement ***/
-        $stmt = $dbh->prepare("SELECT name, description, event_date, contact_phone, contact_email FROM events WHERE priv = 0");        
+        $stmt = $dbh->prepare("SELECT e.name, e.description, e.event_time, e.location, e.contact_email, e.event_id FROM events e, users s WHERE s.RSO = e.RSO AND s.user_id = :user_id AND e.priv = 2");        
 
-        /*** execute the prepared statement ***/
+        $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+		
+		/*** execute the prepared statement ***/
         $stmt->execute();
 		
-		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		//$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 		{
-			echo $row['name'] . "\t" . $row['description'] . "\t" . $row['event_date'] . "\t" . $row['contact_phone'] . "\t" . $row['contact_email'] . "<br><br>";
+			$event_id = $row['event_id'];
+			echo "<a href='events.php?event_id=$event_id'>" . $row['name'] . "</a>" . "\t" . $row['description'] . "\t" . $row['event_time'] . "\t" . $row['location'] . "\t" . $row['contact_email'] . "<br><br>";
 			//$data = $row['name'] . "\t" . $row['description'] . "\n";
 			//print $data;
 		}
@@ -213,7 +289,7 @@ function listFollowingEvents() {
 					</div>
 				<?php elseif (isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 2): ?>
 					<div id="navbar">
-					<h4><a href="logout.php">Logout</a> &nbsp&nbsp&nbsp <a href="HostEvents.php">Host Event</a></h4>
+					<h4><a href="logout.php">Logout</a> &nbsp&nbsp&nbsp <a href="/">Host Event</a></h4>
 					</div>
 				<?php elseif (isset($_SESSION['user_priv']) && $_SESSION['user_priv'] == 1): ?>
 					<div id="navbar">
@@ -249,13 +325,26 @@ function listFollowingEvents() {
 			?>
 		</p>
 		
-		<center><p class="body"> Events I am Following
+		<center><p class="body"> Universities Events
 		
 		<br>
 		
 			<?php 
 			
-				listFollowingEvents();				
+				listUniversityEvents();		
+				//echo 'hello'
+
+			?>
+			
+		</p>
+		
+		<center><p class="body"> RSO Events
+		
+		<br>
+		
+			<?php 
+			
+				listRSOEvents();		
 				//echo 'hello'
 
 			?>

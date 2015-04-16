@@ -20,7 +20,7 @@ CREATE TABLE users (
 	lastname	VARCHAR(30) NOT NULL,
 	email		VARCHAR(50),
 	reg_date	TIMESTAMP,
-	rso		INT(5),
+	rso			INT(5),
 	univ_id		INT(6),
 	PRIMARY KEY (user_id),
 	UNIQUE KEY 	username (username)
@@ -48,7 +48,7 @@ CREATE TABLE events (
 	location		VARCHAR (30),
 	univ_id			INT(6),
 	priv			INT(1),
-	rso			INT(5),
+	rso				INT(5),
 	contact_phone	INT(10),
 	contact_email	VARCHAR (50)
 );
@@ -57,6 +57,7 @@ CREATE TABLE events (
 CREATE TABLE comments (
 	comment_id		INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	event_id		INT(6),
+	user_id			INT(6),
 	text			VARCHAR(140)
 );
 
@@ -65,7 +66,8 @@ CREATE TABLE ratings (
 	rating_id		INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	event_id		INT(6),
 	comment_id		INT(5),
-	rating			INT(1)
+	rating			INT(1),
+	user_id			INT(6)
 );
 
 #create the RSO table
