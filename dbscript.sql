@@ -21,6 +21,7 @@ CREATE TABLE users (
 	email		VARCHAR(50),
 	reg_date	TIMESTAMP,
 	rso		INT(5),
+	univ_id		INT(6),
 	PRIMARY KEY (user_id),
 	UNIQUE KEY 	username (username)
 ); 
@@ -62,7 +63,8 @@ CREATE TABLE comments (
 #create the Ratings table	
 CREATE TABLE ratings (
 	rating_id		INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	event_id		INT(6)	
+	event_id		INT(6),
+	rating			INT(1)
 );
 
 #create the RSO table
@@ -74,18 +76,50 @@ CREATE TABLE rso(
 	
 
 
-INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date) VALUES ("superAdmin", "dc76e9f0c0006e8f919e0c515c66dbba3982f785", 1, "super", "admin", "example@ucf.edu", NOW());
-INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date) VALUES ("user", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", 3, "user", "name", "example@knights.ucf.edu", NOW());
+INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date, univ_id) VALUES ("superAdmin", "dc76e9f0c0006e8f919e0c515c66dbba3982f785", 1, "super", "admin", "example@ucf.edu", NOW(), 1);
+INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date, univ_id, rso) VALUES ("admin", "dc76e9f0c0006e8f919e0c515c66dbba3982f785", 2, "admin", " ", "example@knights.ucf.edu", NOW(), 1, 1);
+INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date, univ_id) VALUES ("user", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", 3, "user", "name", "example@knights.ucf.edu", NOW(), 1);
+INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date, univ_id, rso) VALUES ("brockstoops", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", 3, "Brock", "Stoops", "brockstoops@knights.ucf.edu", NOW(), 1, 1);
+INSERT INTO users (username, password, priv, firstname, lastname, email, reg_date, univ_id, rso) VALUES ("michaelschnell", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", 3, "michael", "schnell", "mschell@knights.ucf.edu", NOW(), 1, 1);
 INSERT INTO universities (name, location, description, num_students, pictures) VALUES("UCF", "Orlando", "University of Central Florida", 56000, null);
-INSERT INTO events (name, category, description, event_time, event_date, location, univ_id, rso, contact_phone, contact_email) VALUES ("COP4710", "class", "Database Management Systems", "14:00:00", "2015-04-16", "Orlando", 0, 0, "4071234567", "andres.vargas@knights.ucf.edu") 
+INSERT INTO universities (name, location, description, num_students, pictures) VALUES("UCB", "Berkeley", "University of California - Berkeley", 15000, null);
+INSERT INTO universities (name, location, description, num_students, pictures) VALUES("USF", "Tampa", "University of South Florida", 30000, null);
+INSERT INTO events (name, category, description, event_time, event_date, location, univ_id, priv, rso, contact_phone, contact_email) VALUES ("COP4710", "class", "Database Management Systems", "14:00:00", "2015-04-15", "Orlando", 0, 0, 0, "4071234567", "andres.vargas@knights.ucf.edu");
+INSERT INTO events (name, category, description, event_time, event_date, location, univ_id, priv, rso, contact_phone, contact_email) VALUES ("COP4710 Presentation", "class", "Database Management Systems", "14:30:00", "2015-04-16", "Orlando", 0, 1, 0, "4071234567", "andres.vargas@knights.ucf.edu"); 
+INSERT INTO events (name, category, description, event_time, event_date, location, univ_id, priv, rso, contact_phone, contact_email) VALUES ("COP4516", "class", "Team Dynamics", "09:00:00", "2015-04-17", "Orlando", 0, 0, 0, "4071234567", "programmer@knights.ucf.edu");
+INSERT INTO events (name, category, description, event_time, event_date, location, univ_id, priv, rso, contact_phone, contact_email) VALUES ("CS61B", "class", "Data Structures", "12:30:00", "2015-04-16", "Berkeley", 0, 1, 0, "4071234567", "andres.vargas@calmail.berkeley.edu"); 
+INSERT INTO events (name, category, description, event_time, event_date, location, univ_id, priv, rso, contact_phone, contact_email) VALUES ("MAC 2312", "class", "Calculus 2", "15:30:00", "2015-04-17", "Tampa", 0, 0, 0, "4071234567", "andres.vargas@bulls.usf.edu");
+INSERT INTO rso (email, admin) VALUES ("knights.ucf.edu", 1);
+INSERT INTO comments (event_id, text) VALUES (2, "this presentation is awesome");
+INSERT INTO comments (event_id, text) VALUES (2, "this presentation is okay");
+INSERT INTO comments (event_id, text) VALUES (2, "this presentation is bad");
+INSERT INTO ratings (event_id, rating) VALUES (2, 5);
+INSERT INTO ratings (event_id, rating) VALUES (2, 4);
+INSERT INTO ratings (event_id, rating) VALUES (2, 2);
 
-# events at users university
-#SELECT e.* FROM events e, universities u, users s WHERE s.univ_id = u.univ_id AND u.location = e.location
-#SELECT e.* FROM events e, universities u WHERE e.location = u.location AND u.location = (?)
+
+# Returns events at users university
+#need to input the user id
+#returns both public and private events
+#SELECT e.* FROM events e, universities u, users s WHERE s.univ_id = u.univ_id AND u.location = e.location AND s.user_id = (?)
+
+# Selects all public events from a university
+#need to input the location of a university
+#SELECT e.* FROM events e, universities u WHERE e.location = u.location AND e.priv = 0 AND u.location = (?)
+
+# Selects all public events from a university
+#need to input the id of a university
+#SELECT e.* FROM events e, universities u WHERE e.location = u.location AND e.priv = 0 AND u.univ_id = (?)
+
 #events in a users RSO
-#SELECT e.* FROM events e, users s WHERE s.RSO = e.RSO
+#need to input the user id to return the events
+#SELECT e.* FROM events e, users s WHERE s.RSO = e.RSO AND s.user_id = (?)
+
 #public event below
-#SELECT e.* FROM events e, universities u, users s WHERE e.privacy = 0
-#private event below
-#SELECT e.* FROM events e, universities u, users s WHERE s.univ_id = u.univ_id AND u.location = e.location AND e.privacy = 1
+#returns all the public events regardless of location
+#SELECT * FROM events WHERE e.priv = 0
+
+#Returns the private events at a users university
+#need to input the user id
+#SELECT e.* FROM events e, universities u, users s WHERE s.univ_id = u.univ_id AND u.location = e.location AND e.priv = 1 AND s.user_id = (?)
 
