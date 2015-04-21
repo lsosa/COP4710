@@ -120,7 +120,7 @@ function listCommentsAndRatings() {
 		
 		while($result = $stmt->fetch(PDO::FETCH_ASSOC))
 		{
-			echo "<h3>" . $result['text'] . "\t\t\t" . "Rating: " .$result['rating'] . "</h3>";
+			echo "<h3>" . $result['text'] . "\t\t\t" . "Rating: " .$result['rating'] . "</h3>" . "<a href=/>Remove</a>";
 			//$data = $row['name'] . "\t" . $row['description'] . "\n";
 			//print $data;
 		}
@@ -174,6 +174,25 @@ function listCommentsAndRatings() {
 			listCommentsAndRatings();
 		
 		?>
+		
+		<div id="page">
+		
+			
+			<form>
+
+				
+				<table>
+					<tr><td> Add Comment: </td>
+					<td> <input type="text" name="" value=""> </td></tr>
+
+			</form>
+					
+			<form method="get" action="request_submitted.php">		
+					<tr><td><input type="submit" value="Submit"> </td></tr>
+				</table>
+			</form>
+
+			</div>
 		
 		<br>
 		

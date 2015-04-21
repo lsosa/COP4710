@@ -24,7 +24,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_priv'] != 1)
 				}
 			</style>
 			
-			<form>
+			<form action="request_submitted.php" method="post">
 				<h3> Education </h3>
 				
 				<table>
